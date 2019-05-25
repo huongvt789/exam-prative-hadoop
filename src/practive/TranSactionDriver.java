@@ -1,3 +1,18 @@
+/*File thong tin giao dich san pham input.txt co dang:
+Transaction_Date, Product_Name, Price, City
+Yeu cau: 
+1. Tao 1 file input.txt co dang nhu tren lap lai 15 ban ghi.
+2. Thong ke tong so lan giao dich cua moi san pham.
+3. Tinh gia trung giao dich theo tung san pham.
+
+Giai:
+2.function map()
+Input: offset, valueOffset.
+OutPut: list(productName, 1).
+function reducer()
+Input: productName, list(productName)
+Output: list(productName, sum(list(productName))
+*/
 package practive;
 
 import org.apache.hadoop.fs.Path;
@@ -39,7 +54,7 @@ public class TranSactionDriver {
 		try {
 			// Run the job 
 			JobClient.runJob(job_conf);
-	    	System.out.println("WordCount1 OK");
+	    	System.out.println("Transaction OK");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

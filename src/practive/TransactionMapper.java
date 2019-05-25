@@ -23,7 +23,6 @@ public class TransactionMapper extends MapReduceBase implements Mapper<LongWrita
 //			
 			String[] array = value.toString().split(",");
 			String city = array[1];
-			System.out.print(city);
 			word.set(city);
 			output.collect(word, one);
 		}
