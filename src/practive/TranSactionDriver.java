@@ -8,10 +8,17 @@ ID, Name, Math, Physic,Chem.
 Giải;
 2. function map()
 Input: offsetRow, valOffset:Math,Physic,Chem.
-Output: list(valOffset, 1).
+Output: list(nameSubject, point).
 	function reducer()
 Input: valOffset, list(valOffset).
 Output: list(valOffset, sum(valOffset).
+
+3. function map()
+Input: offsetRow, valOffset:Math,Physic,Chem.
+Output: list(nameSubject, point)
+	function reducer()
+Input: valeOffser, list(nameSubject, point)
+Output: list(nameSubject, sumStudent) 
  */
 package practive;
 

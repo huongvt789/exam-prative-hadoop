@@ -11,14 +11,11 @@ package practive;
 
 		public void reduce(Text t_key, Iterator<DoubleWritable> values, OutputCollector<Text,DoubleWritable> output, Reporter reporter) throws IOException {
 			Text key = t_key;
-			double maxPoint = Double.NEGATIVE_INFINITY; //else: Double.Nagative_I...... (tim max)
-			System.out.println(values);
+			int count = 0;
 			while (values.hasNext()) {
-				// replace type of value with the actual type of our value
-				DoubleWritable value = (DoubleWritable) values.next();
-				double point = value.get();
-				maxPoint = maxPoint > point ? maxPoint : point;
+				double x = values.next().get();
+				if(x > 6) count++;
 			}
-			output.collect(key, new DoubleWritable(maxPoint));
+			output.collect(key, new DoubleWritable(count));
 		}
 	}
