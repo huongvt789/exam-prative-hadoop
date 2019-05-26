@@ -20,7 +20,7 @@ import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
 
 public class TranSactionDriver {
-	protected static String inputFile = "/home/huongvt/Documents/BoDuLieu/de2.txt";
+	protected static String inputFile = "/home/huongvt/Documents/BoDuLieu/de3.txt";
 	protected static String outputFile = "/home/huongvt/Documents/output" + Math.random();
 	public static void main(String[] args) {
 		JobClient my_client = new JobClient();
@@ -32,7 +32,7 @@ public class TranSactionDriver {
 
 		// Specify data type of output key and value
 		job_conf.setOutputKeyClass(Text.class);
-		job_conf.setOutputValueClass(DoubleWritable.class);
+		job_conf.setOutputValueClass(IntWritable.class);
 
 		// Specify names of Mapper and Reducer Class
 		job_conf.setMapperClass(TransactionMapper.class);
