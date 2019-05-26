@@ -1,17 +1,17 @@
 /*
-File thong tin giao dich san pham input.txt co dang:
-Transaction_Date, Product_Name, Price, City
-Yeu cau: 
-1. Tao 1 file input.txt co dang nhu tren lap lai 15 ban ghi.
-2. Thong ke tong so lan giao dich cua moi san pham.
-3. Tinh gia trung giao dich theo tung san pham.
-3. function map() 
-Input: offset, valueOffset.
-Output: list(productName, price)
-	function reducer() 
-Input: productName, list(price)
-Output: list(productName, abs(price))
+File thông tin giao dịch sản ph input.txt có dạng như sau:
+ID, Name, Math, Physic,Chem.
+1. Tao file.
+2. Thống kê điểm lớn nhất theo từng môn.
+3. Đếm số lượng sinh viên đạt trên 6 điểm theo từng môn.
 
+Giải;
+2. function map()
+Input: offsetRow, valOffset:Math,Physic,Chem.
+Output: list(valOffset, 1).
+	function reducer()
+Input: valOffset, list(valOffset).
+Output: list(valOffset, sum(valOffset).
  */
 package practive;
 
@@ -19,10 +19,8 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
 
-import wordCount.WordCount1Mapper;
-
 public class TranSactionDriver {
-	protected static String inputFile = "/home/huongvt/Documents/BoDuLieu/de1.txt";
+	protected static String inputFile = "/home/huongvt/Documents/BoDuLieu/de2.txt";
 	protected static String outputFile = "/home/huongvt/Documents/output" + Math.random();
 	public static void main(String[] args) {
 		JobClient my_client = new JobClient();
@@ -34,7 +32,7 @@ public class TranSactionDriver {
 
 		// Specify data type of output key and value
 		job_conf.setOutputKeyClass(Text.class);
-		job_conf.setOutputValueClass(IntWritable.class);
+		job_conf.setOutputValueClass(DoubleWritable.class);
 
 		// Specify names of Mapper and Reducer Class
 		job_conf.setMapperClass(TransactionMapper.class);

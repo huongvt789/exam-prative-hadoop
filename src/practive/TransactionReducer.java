@@ -1,26 +1,24 @@
 package practive;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.*;
 
-import org.apache.hadoop.io.DoubleWritable;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.*;
+	import java.io.IOException;
+	import java.util.*;
 
-public class TransactionReducer extends MapReduceBase implements Reducer<Text, IntWritable, Text, DoubleWritable> {
+	import org.apache.hadoop.io.DoubleWritable;
+	import org.apache.hadoop.io.Text;
+	import org.apache.hadoop.mapred.*;
 
-	public void reduce(Text t_key, Iterator<IntWritable> values, OutputCollector<Text,DoubleWritable> output, Reporter reporter) throws IOException {
-		Text productName = t_key;
-		int count = 0;
-		int sum = 0;
-		while (values.hasNext()) {
-			// replace type of value with the actual type of our value
-			count++;
-			IntWritable price = (IntWritable) values.next();
-			sum = price.get();
+	public class TransactionReducer extends MapReduceBase implements Reducer<Text, DoubleWritable, Text, DoubleWritable> {
+
+		public void reduce(Text t_key, Iterator<DoubleWritable> values, OutputCollector<Text,DoubleWritable> output, Reporter reporter) throws IOException {
+			Text key = t_key;
+			double maxPoint = Double.NEGATIVE_INFINITY; //else: Double.Nagative_I...... (tim max)
+			System.out.println(values);
+			while (values.hasNext()) {
+				// replace type of value with the actual type of our value
+				DoubleWritable value = (DoubleWritable) values.next();
+				double point = value.get();
+				maxPoint = maxPoint > point ? maxPoint : point;
+			}
+			output.collect(key, new DoubleWritable(maxPoint));
 		}
-		System.out.println(sum/count);
-		output.collect(productName, new DoubleWritable(sum/count));
 	}
-}
