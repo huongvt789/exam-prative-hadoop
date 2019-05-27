@@ -1,17 +1,15 @@
 /*
 File thông tin giao dịch sản ph input.txt có dạng như sau:
-ID, Name, Math, Physic,Chem.
-1. Tao file.
-2. Thống kê điểm lớn nhất theo từng môn.
-3. Đếm số lượng sinh viên đạt trên 6 điểm theo từng môn.
-
+Product_name, city, Transaction_date, Price.
+1. Thong ke so lan giao dich cua moi thanh pho.
+2. Dua ra danh sach san pham theo tung thanh pho.
 Giải;
-2. function map()
-Input: offsetRow, valOffset:Math,Physic,Chem.
-Output: list(valOffset, 1).
+3. function map()
+Input: offset, valOffset:city, product name.
+Output: list(city, product_name).
 	function reducer()
-Input: valOffset, list(valOffset).
-Output: list(valOffset, sum(valOffset).
+Input: city, list(product name).
+Output: city, detail(product name).
  */
 package practive;
 
@@ -32,7 +30,7 @@ public class TranSactionDriver {
 
 		// Specify data type of output key and value
 		job_conf.setOutputKeyClass(Text.class);
-		job_conf.setOutputValueClass(IntWritable.class);
+		job_conf.setOutputValueClass(Text.class);
 
 		// Specify names of Mapper and Reducer Class
 		job_conf.setMapperClass(TransactionMapper.class);
