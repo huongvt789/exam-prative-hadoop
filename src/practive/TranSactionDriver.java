@@ -1,15 +1,15 @@
 /*
 File thông tin giao dịch sản ph input.txt có dạng như sau:
-Product_name, city, Transaction_date, Price.
-1. Thong ke so lan giao dich cua moi thanh pho.
-2. Dua ra danh sach san pham theo tung thanh pho.
+Product_ID: list(CompanyId);
+2. Thong ke so luong san pham duoc cung cap moi cong ty.
+3. Dua ra danh sach san pham duoc cung cap moi cong ty.
 Giải;
-3. function map()
-Input: offset, valOffset:city, product name.
-Output: list(city, product_name).
+2. function map()
+Input: offset, valOffset:listCompanyId.
+Output: list(listCompanyId, 1).
 	function reducer()
-Input: city, list(product name).
-Output: city, detail(product name).
+Input: companyId, list(companyId).
+Output: list(companyId, sum(companyId)).
  */
 package practive;
 
@@ -18,7 +18,7 @@ import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
 
 public class TranSactionDriver {
-	protected static String inputFile = "/home/huongvt/Documents/BoDuLieu/de3.txt";
+	protected static String inputFile = "/home/huongvt/Documents/BoDuLieu/de4.txt";
 	protected static String outputFile = "/home/huongvt/Documents/output" + Math.random();
 	public static void main(String[] args) {
 		JobClient my_client = new JobClient();
@@ -30,7 +30,7 @@ public class TranSactionDriver {
 
 		// Specify data type of output key and value
 		job_conf.setOutputKeyClass(Text.class);
-		job_conf.setOutputValueClass(Text.class);
+		job_conf.setOutputValueClass(IntWritable.class);
 
 		// Specify names of Mapper and Reducer Class
 		job_conf.setMapperClass(TransactionMapper.class);

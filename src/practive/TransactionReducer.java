@@ -3,17 +3,18 @@ package practive;
 	import java.io.IOException;
 	import java.util.*;
 
-	import org.apache.hadoop.io.Text;
-	import org.apache.hadoop.mapred.*;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapred.*;
 
-	public class TransactionReducer extends MapReduceBase implements Reducer<Text, Text, Text, Text> {
+	public class TransactionReducer extends MapReduceBase implements Reducer<Text,IntWritable, Text, IntWritable> {
 
-		public void reduce(Text t_key, Iterator<Text> values, OutputCollector<Text,Text> output, Reporter reporter) throws IOException {
+		public void reduce(Text t_key, Iterator<IntWritable> values, OutputCollector<Text,IntWritable> output, Reporter reporter) throws IOException {
 			Text key = t_key;
-			String sum = "";
+			int sum = 0;
 			while (values.hasNext()) {
-				sum += values.next().toString() + ",";
+				sum += values.next().get();
 			}
-			output.collect(key, new Text(sum));
+			output.collect(key, new IntWritable(sum));
 		}
 	}
