@@ -10,6 +10,13 @@ Output: list(listCompanyId, 1).
 	function reducer()
 Input: companyId, list(companyId).
 Output: list(companyId, sum(companyId)).
+
+3. function map()
++ Input: offset, valOffset: productId, list(company).
++ Output: list(company, productId).
+	function reducer()
++ Input: company, list(productId).
++ Output: list(company, list(productId)).
  */
 package practive;
 
@@ -30,7 +37,7 @@ public class TranSactionDriver {
 
 		// Specify data type of output key and value
 		job_conf.setOutputKeyClass(Text.class);
-		job_conf.setOutputValueClass(IntWritable.class);
+		job_conf.setOutputValueClass(Text.class);
 
 		// Specify names of Mapper and Reducer Class
 		job_conf.setMapperClass(TransactionMapper.class);
